@@ -1,0 +1,74 @@
+pseudo goes here
+
+struct thread{
+pthread_t tid;
+int iterations
+int id;
+}
+//global variables
+int buffer[max_buf] 
+int producer_array[size]
+int consumer_array[size]
+
+dequeue_item() ( delete value from buffer array at index 0 )
+enqueue_item() ( add value to buffer[index]) // basically, it is the FIFO rule
+
+semophore mutex = 1, full = 0, empty = max_buf;
+
+void producer(thread){
+while(thread->iterations){
+    wait(empty)
+    lock(mutex)
+    
+        //Critical section
+        // Store item in the last index of producer_array
+
+    unlock(mutex)
+    signal(full)
+}
+
+}
+
+
+void consumer(thread){
+while(thread->iterations){
+    wait(full)
+    lock(mutex)
+    
+        //Critical section
+        //get value held in buffer at index 0, and store it to consumer_array
+
+    unlock(mutex)
+    signal(empty)
+    }
+}
+
+
+
+int main(argc, *argv){
+get data from argv[1] to argv[6]
+
+display message
+
+struct thread producer_thread[num_PThread];
+struct thread consumer_thread[num_CPhread];
+
+for(i = 0 to num_PThread){
+pthread_create(&producer_thread[i].tid, NULL, producer, (void *)&producer_thread[i]);
+}
+
+for(i = 0 to num_CThread){
+pthread_create(&consumer_thread[i].tid, NULL, consumer, (void *)&consumer_thread[i]);
+}
+
+for(i = 0 to num_PThread){
+pthread_join(producer_thread[i].tid, NULL); 
+}
+
+for(i = 0 to num_CThread){
+pthread_join(consumer_thread[i].tid, NULL); 
+}
+
+
+
+}
